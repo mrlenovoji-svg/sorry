@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>I’m really very sorry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Lora:ital@0;1&family=Kalam&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<style>
+:root{--night:#ffd6e3;--glow:#fff7fa;--paper:#ffffff;--paper-dark:#f8c3d3;--ink:#6b2a3f;--rose:#d94f7a;--seal:#c2185b;--hand:'Dancing Script','Segoe Script',cursive;--body:'Lora','Tiro Devanagari Hindi',Georgia,serif;--size:1.15rem;--text:#6b2a3f;--title:#c2185b;--panel:rgba(255,255,255,.6);--field:rgba(255,255,255,.85);--onacc:#ffffff;--snd:rgba(255,255,255,.85);--flap:#f3a6bd;--sh:rgba(194,24,91,.2);--petal:#f48fb1;--heart:#e91e63;color-scheme:light;}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;min-height:100%}
+body{background:radial-gradient(ellipse at 50% 20%,var(--glow),var(--night) 70%) fixed;color:var(--text);
+ font-family:var(--body);padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--rose);outline-offset:4px}
+
+/* gate */
+#gate{position:fixed;inset:0;display:grid;place-content:center;justify-items:center;gap:1.4rem;z-index:5;
+ background:radial-gradient(ellipse at 50% 30%,var(--glow),var(--night) 70%);transition:opacity .6s}
+#gate.gone{opacity:0;pointer-events:none}
+.env{position:relative;width:min(78vw,340px);aspect-ratio:3/2;background:var(--paper-dark);border-radius:6px;
+ box-shadow:0 20px 50px var(--sh);animation:float 3.2s ease-in-out infinite}
+.env::before{content:"";position:absolute;inset:0;border-radius:6px;background:var(--paper);clip-path:polygon(0 100%,50% 45%,100% 100%)}
+.flap{position:absolute;left:0;right:0;top:0;height:62%;background:var(--flap);border-radius:6px 6px 0 0;
+ clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .8s ease .25s;z-index:2}
+.seal{position:absolute;left:50%;top:50%;width:62px;height:62px;margin:-31px 0 0 -31px;border:0;border-radius:50%;
+ background:radial-gradient(circle at 35% 30%,#d4566b,var(--seal));font-family:var(--hand);font-size:1.7rem;color:#ffd9df;
+ box-shadow:0 4px 10px rgba(0,0,0,.35);z-index:3;transition:transform .35s,opacity .35s;animation:pulse 1.8s ease-in-out infinite}
+.env.open{animation:none}
+.env.open .seal{transform:scale(1.6);opacity:0;animation:none}
+.env.open .flap{transform:rotateX(180deg);z-index:0}
+.hint{font-family:var(--hand);font-size:1.7rem;margin:0;color:var(--rose)}
+.nomusic{background:none;border:0;color:var(--text);opacity:.75;text-decoration:underline;font-size:.95rem}
+@keyframes float{50%{transform:translateY(-10px)}}
+@keyframes pulse{50%{box-shadow:0 0 0 12px rgba(229,154,168,.18),0 4px 10px rgba(0,0,0,.35)}}
+
+/* sound toggle */
+#snd{position:fixed;top:calc(env(safe-area-inset-top,0px) + .8rem);right:.8rem;z-index:4;background:var(--snd);
+ border:1px solid var(--rose);border-radius:99px;padding:.35rem .9rem;font-size:.9rem;display:none}
+
+/* page */
+#page{opacity:0;transition:opacity 1s}
+#page.show{opacity:1}
+.hero{min-height:100svh;display:grid;place-content:center;justify-items:center;text-align:center;padding:2rem 1.2rem;gap:1rem}
+.hero .to{font-family:var(--hand);font-size:2rem;color:var(--rose);margin:0}
+h1{font-family:var(--hand);font-weight:600;font-size:clamp(4rem,19vw,7rem);line-height:1;margin:0;color:var(--title)}
+.hero .sub{font-style:italic;opacity:.8;margin:0}
+.scroll{margin-top:2.5rem;font-family:var(--hand);font-size:1.4rem;color:var(--rose);animation:float 2s ease-in-out infinite}
+.wrap{max-width:640px;margin:0 auto;padding:0 1.2rem 3rem}
+.paper{background:var(--paper);color:var(--ink);border-radius:10px;padding:2.4rem 1.7rem 2rem;box-shadow:0 24px 60px var(--sh)}
+.paper{outline:1px solid var(--rose);outline-offset:-10px}
+.bless{color:var(--rose);margin:0 0 .6rem;font-size:1.3rem}
+.paper p{font-size:var(--size);line-height:1.85;margin:0 0 1.15rem}
+.from{font-family:var(--hand);font-size:2rem;text-align:right;margin:1.6rem 0 0!important}
+.rv{opacity:0;transform:translateY(14px);transition:opacity .9s,transform .9s}
+.rv.in{opacity:1;transform:none}
+h2{font-family:var(--hand);font-size:2.4rem;font-weight:600;text-align:center;margin:3.5rem 0 1.4rem}
+.photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.6rem}
+figure{margin:0;background:#fff;padding:.7rem .7rem 1rem;border-radius:3px;box-shadow:0 10px 26px var(--sh);color:var(--ink);
+ text-align:center;transform:rotate(var(--r))}
+figure img{display:block;width:100%;aspect-ratio:1;object-fit:cover}
+figcaption{font-family:var(--hand);font-size:1.35rem;margin-top:.5rem}
+.reply{background:var(--panel);border:1px solid rgba(229,154,168,.4);border-radius:10px;padding:1.4rem}
+.reply h2{margin:0 0 1rem}
+.opts{display:grid;gap:.6rem}
+.opt,.go{border:1px solid var(--rose);background:transparent;border-radius:8px;padding:.8rem 1rem;text-align:left}
+.opt[aria-pressed=true]{background:var(--rose);color:var(--onacc)}
+textarea{width:100%;margin:.9rem 0;padding:.8rem;border-radius:8px;border:1px solid var(--rose);background:var(--field);color:inherit;font:inherit;min-height:90px}
+.go{background:var(--seal);border-color:var(--seal);text-align:center;width:100%}
+.note{min-height:1.4em;margin:.6rem 0 0;font-size:.9rem;color:var(--rose)}
+.shayari{margin:1.8rem 0;padding:1.3rem .8rem;text-align:center;border-top:1px solid var(--rose);border-bottom:1px solid var(--rose);
+ font-family:'Kalam','Tiro Devanagari Hindi',var(--body);font-size:1.45rem;line-height:1.9;color:var(--seal)}
+.shayari::before,.shayari::after{content:"♥";display:block;font-size:1rem;color:var(--rose)}
+#fx{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:3}
+.fall{position:absolute;top:-8vh;left:var(--x);width:var(--s);height:var(--s);opacity:0;animation:fall var(--d) linear forwards}
+.petal{background:var(--petal);border-radius:150% 0 150% 0}
+.hrt{color:var(--heart);font-size:var(--s);line-height:1;width:auto;height:auto}
+@keyframes fall{0%{opacity:0;transform:translate(0,0) rotate(0)}10%{opacity:.85}100%{opacity:0;transform:translate(var(--dx),112vh) rotate(var(--r))}}
+footer{text-align:center;padding:2rem 1rem 3rem}
+footer p{font-family:var(--hand);font-size:2rem;margin:0 0 1rem}
+footer a{color:var(--rose)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<audio id="bgm" src="Phir%20Le%20Aya%20Dil.mp3" loop preload="none"></audio>
+<div id="gate">
+  <div class="env"><span class="flap"></span><button class="seal" id="seal" aria-label="Tap the seal to open">♥</button></div>
+  <p class="hint">Tap the seal to open</p>
+  <button class="nomusic" id="nomusic" type="button">Open without music</button>
+</div>
+<button id="snd" type="button">Sound on</button>
+<div id="fx" aria-hidden="true"></div>
+
+<div id="page" hidden>
+  <section class="hero">
+    <p class="to">Dear My love,</p>
+    <h1>I’m really very sorry</h1>
+    <p class="sub">A few words from my heart</p>
+    <span class="scroll">Scroll down to read ♥</span>
+  </section>
+  <div class="wrap">
+    <article class="paper">
+      <p class="rv">I’ve been thinking about what happened, and I know I hurt you. You didn’t deserve that, and I’m truly sorry.</p>
+      <p class="rv">I should have listened more and reacted less. I can’t take it back, but I can promise to do better.</p>
+      <blockquote class="shayari rv">कुछ इस तरह से उसने मेरे दिल को छू लिया,<br>कि अब उसके बिना कोई भी मौसम अच्छा नहीं लगता</blockquote>
+      <p class="rv">Do you remember our old days? The long talks, the silly laughs, the small moments that meant everything. I carry every one of them with me, and I miss them more than I can say.</p>
+      <p class="rv">I don’t want those days to become just memories. If you still feel even a little of what we had, please give us a chance to bring them back.</p>
+      <p class="from rv">— Rohit</p>
+    </article>
+    <h2>Moments I treasure</h2>
+    <section class="photos">
+      <figure class="rv" style="--r:-3deg"><img src="photos/image_1.jpg" alt="A memory of us" loading="lazy"></figure>
+    </section>
+
+  </div>
+  <footer><p>Rohit</p><a href="#top" onclick="window.scrollTo({top:0});return false">Back to the top</a></footer>
+</div>
+
+<script>
+const $=s=>document.querySelector(s),gate=$('#gate'),page=$('#page'),bgm=$('#bgm'),snd=$('#snd');
+function openGate(music){
+  $('.env').classList.add('open');
+  if(bgm&&music){bgm.volume=.6;bgm.play().then(()=>{snd.style.display='block';snd.textContent='Sound on'}).catch(()=>{})}
+  setTimeout(()=>gate.classList.add('gone'),1200);
+  setTimeout(()=>{gate.hidden=true;page.hidden=false;window.scrollTo(0,0);requestAnimationFrame(()=>page.classList.add('show'));fx()},1750);
+}
+function fx(){
+  if(!true||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  const box=$('#fx');
+  const add=()=>{if(document.hidden)return;
+    const e=document.createElement('span'),h=Math.random()<.3;
+    e.className='fall '+(h?'hrt':'petal');if(h)e.textContent='♥';
+    const s=(h?14+Math.random()*14:10+Math.random()*12)+'px';
+    e.style.cssText='--x:'+Math.random()*100+'vw;--s:'+s+';--d:'+(7+Math.random()*6)+'s;--dx:'+(Math.random()*160-80)+'px;--r:'+(Math.random()*540-270)+'deg';
+    e.onanimationend=()=>e.remove();box.appendChild(e)};
+  for(let i=0;i<8;i++)setTimeout(add,i*250);
+  setInterval(add,650);
+}
+$('#seal').onclick=()=>openGate(true);
+const nm=$('#nomusic');if(nm)nm.onclick=()=>openGate(false);
+snd.onclick=()=>{if(bgm.paused){bgm.play();snd.textContent='Sound on'}else{bgm.pause();snd.textContent='Sound off'}};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.2});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+const opts=[...document.querySelectorAll('.opt')];let choice='';
+opts.forEach(b=>b.onclick=()=>{choice=b.dataset.v;opts.forEach(x=>x.setAttribute('aria-pressed',x===b))});
+const go=$('#go');
+if(go)go.onclick=()=>{
+  if(!choice){$('#note').textContent='Please pick one option first.';return}
+  const t=$('#txt').value.trim();
+  window.open('https://wa.me/?text='+encodeURIComponent(choice+(t?'\n\n'+t:'')),'_blank');
+};
+</script>
+</body>
+</html>
